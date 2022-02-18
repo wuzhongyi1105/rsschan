@@ -1,9 +1,9 @@
-# RSS Chan
+# 🔥RSS Chan
 
 > RSS update&notification(Bark、DingTalk、FeiShu、go-cqhttp、gotify、iGot、server chan、push+、qmsg chan、WeChat work、telegram). - RSS更新与通知(Bark、钉钉群机器人、飞书群机器人、go-cqhttp、gotify、iGot、server chan、push+、qmsg chan、WeChat work、telegram)。
 
 # 功能
-RSS酱 运行在github action上的rss自动更新通知项目
+🌟RSS酱 运行在github action上的rss自动更新通知项目
 - 支持多rss订阅源
 - 支持多种推送通知
 - 支持Github Action
