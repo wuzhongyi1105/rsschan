@@ -31,7 +31,7 @@ def print(text, *args, **kw):
 push_config = {
     'HITOKOTO': False,                  # 启用一言（随机句子）
 
-    'BARK_PUSH': '',                    # bark IP 或设备码，例：https://api.day.app/DxHcxxxxxRxxxxxxcm/
+    'BARK_PUSH': '',                    # 必填 bark IP 或设备码，例：https://api.day.app/DxHcxxxxxRxxxxxxcm/
     'BARK_ARCHIVE': '',                 # bark 推送是否存档
     'BARK_GROUP': '',                   # bark 推送分组
     'BARK_SOUND': '',                   # bark 推送声音
@@ -39,39 +39,39 @@ push_config = {
 
     'CONSOLE': False,                    # 控制台输出
 
-    'DD_BOT_SECRET': '',                # 钉钉机器人的 DD_BOT_SECRET
-    'DD_BOT_TOKEN': '',                 # 钉钉机器人的 DD_BOT_TOKEN
+    'DD_BOT_SECRET': '',                # 必填 钉钉机器人的 DD_BOT_SECRET
+    'DD_BOT_TOKEN': '',                 # 必填 钉钉机器人的 DD_BOT_TOKEN
 
-    'FSKEY': '',                        # 飞书机器人的 FSKEY
+    'FSKEY': '',                        # 必填  飞书机器人的 FSKEY
 
-    'GOBOT_URL': '',                    # go-cqhttp
+    'GOBOT_URL': '',                    # 必填  go-cqhttp
                                         # 推送到个人QQ：http://127.0.0.1/send_private_msg
                                         # 群：http://127.0.0.1/send_group_msg
-    'GOBOT_QQ': '',                     # go-cqhttp 的推送群或用户
+    'GOBOT_QQ': '',                     # 必填  go-cqhttp 的推送群或用户
                                         # GOBOT_URL 设置 /send_private_msg 时填入 user_id=个人QQ
-                                        #               /send_group_msg   时填入 group_id=QQ群
-    'GOBOT_TOKEN': '',                  # go-cqhttp 的 access_token
+                                        #                /send_group_msg   时填入 group_id=QQ群
+    'GOBOT_TOKEN': '',                  # 必填 go-cqhttp 的 access_token
 
-    'GOTIFY_URL': '',                   # gotify地址,如https://push.example.de:8080
-    'GOTIFY_TOKEN': '',                 # gotify的消息应用token
+    'GOTIFY_URL': '',                   # 必填 gotify地址,如https://push.example.de:8080
+    'GOTIFY_TOKEN': '',                 # 必填 gotify的消息应用token
     'GOTIFY_PRIORITY': 0,               # 推送消息优先级,默认为0
 
     'IGOT_PUSH_KEY': '',                # iGot 聚合推送的 IGOT_PUSH_KEY
 
     'PUSH_KEY': '',                     # server 酱的 PUSH_KEY，兼容旧版与 Turbo 版
 
-    'PUSH_PLUS_TOKEN': '',              # push+ 微信推送的用户令牌
+    'PUSH_PLUS_TOKEN': '',              # 必填 push+ 微信推送的用户令牌
     'PUSH_PLUS_USER': '',               # push+ 微信推送的群组编码
 
     'QMSG_KEY': '',                     # qmsg 酱的 QMSG_KEY
     'QMSG_TYPE': '',                    # qmsg 酱的 QMSG_TYPE
 
-    'QYWX_AM': '',# 企业微信应用 格式：企业id,应用密钥,用户全部人就填@all,应用id,企业微信的图片素材可选
+    'QYWX_AM': '',# corpid,corpsecret,touser(注:多个成员ID使用|隔开),agentid,消息类型(选填,不填默认文本消息类型) 注意用,号隔开(英文输入法的逗号)，例如：wwcfrs,B-76WERQ,qinglong,1000001,2COat
 
     'QYWX_KEY': '',                     # 企业微信机器人
 
-    'TG_BOT_TOKEN': '',                 # tg 机器人的 TG_BOT_TOKEN，例：1407203283:AAG9rt-6RDaaX0HBLZQq0laNOh898iFYaRQ
-    'TG_USER_ID': '',                   # tg 机器人的 TG_USER_ID，例：1434078534
+    'TG_BOT_TOKEN': '',                 # 必填 tg 机器人的 TG_BOT_TOKEN，例：1407203283:AAG9rt-6RDaaX0HBLZQq0laNOh898iFYaRQ
+    'TG_USER_ID': '',                   # 必填 tg 机器人的 TG_USER_ID，例：1434078534
     'TG_API_HOST': '',                  # tg 代理 api
     'TG_PROXY_AUTH': '',                # tg 代理认证参数
     'TG_PROXY_HOST': '',                # tg 机器人的 TG_PROXY_HOST
