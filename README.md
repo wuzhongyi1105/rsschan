@@ -18,11 +18,9 @@ RSS酱 运行在github action上的rss自动更新通知项目
 
 # 使用方法
 1. Fork本项目
-2. 项目添加必须变量 Settings -> Secrets -> Actions -> New repository secret
-添加GIthub的用户名和邮箱
+2. 项目添加必须变量 Settings -> Secrets -> Actions -> New repository secret 添加GIthub的用户名和邮箱  其他push token变量名请看notify.py下的push_config名字
     - USERNAME
     - USEREMAIL
-其他push token变量名请看notify.py下的push_config名字
 3. 添加订阅至 rss_sub
 4. 在action里启动或者 右上角 Star 启动并查看log
 
