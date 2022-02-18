@@ -22,8 +22,6 @@ def GetNewRSS(url):
         #读取之前的rss
         with open("oldrss") as file:
             old = file.read()
-        
-        oldrss.writelines(['\n'])
         #检查文章链接是否存在如果不存在则发送
         if not post.link in old:
             #打印文章标题
