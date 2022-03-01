@@ -35,5 +35,9 @@ if __name__ == '__main__':
     #订阅地址在rss_sub文件，每行填一个网址。
 
     #读取rss_sub文件，获取订阅地址。并逐行订阅
+    #添加记录
+    oldrss=open('oldrss',mode='a+')
+    oldrss.writelines(['\n'])
+    oldrss.close()
     for line in open("rss_sub"):
         GetNewRSS(line)
