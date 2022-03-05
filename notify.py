@@ -87,7 +87,7 @@ for k in push_config:
         v = os.getenv(k)
         push_config[k] = v
 
-def fcm(title: str, content: str, url: str) -> None:
+def fcm(title: str, content: str, link: str) -> None:
     """
     Push Notification API 基于xdroid.net的接口 google play可下载
     """
@@ -97,7 +97,7 @@ def fcm(title: str, content: str, url: str) -> None:
     print("FCM 服务启动")
     
     url = 'http://xdroid.net/api/message'
-    data = {"k": {push_config.get("FCM_KEY")},"title": title,"content": content,"u": url}
+    data = {"k": {push_config.get("FCM_KEY")},"title": title,"content": content,"u": link}
     response = requests.post(url, data=json.dumps(data)).json()
 
     if response.get("StatusCode") == 0:
@@ -535,7 +535,7 @@ if push_config.get("TG_BOT_TOKEN") and push_config.get("TG_USER_ID"):
     notify_function.append(telegram_bot)
 
 
-def send(title: str, content: str, url: str) -> None:
+def send(title: str, content: str, link: str) -> None:
     if not content:
         print(f"{title} 推送内容为空！")
         return
