@@ -547,7 +547,7 @@ def send(title: str, content: str, link: str) -> None:
     content += "\n" + text
 
     ts = [
-        threading.Thread(target=mode, args=(title, content), name=mode.__name__)
+        threading.Thread(target=mode, args=(title, content, link), name=mode.__name__)
         for mode in notify_function
     ]
     [t.start() for t in ts]
