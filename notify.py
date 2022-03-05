@@ -506,7 +506,8 @@ def one() -> str:
     res = requests.get(url).json()
     return res["hitokoto"] + "    ----" + res["from"]
 
-
+if push_config.get("FCM_KEY"):
+    notify_function.append(fcm)
 if push_config.get("BARK_PUSH"):
     notify_function.append(bark)
 if push_config.get("CONSOLE"):
