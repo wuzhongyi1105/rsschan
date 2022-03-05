@@ -9,6 +9,7 @@
 - 支持Github Action
 - 过滤重复消息
 - 精准定时(云函数实现)
+- 注意注意注意（rss内容无更新可能action失败 upload to this repo 错误可以无视）
 
 # 目录文件
 - main.py        主程序
