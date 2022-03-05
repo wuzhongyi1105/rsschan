@@ -30,7 +30,8 @@ def print(text, *args, **kw):
 # fmt: off
 push_config = {
     'HITOKOTO': False,                  # 启用一言（随机句子）
-
+    
+    'FCM_KEY':'',                       # Push Notification API 基于xdroid.net的接口 google play可下载
     'BARK_PUSH': '',                    # 必填 bark IP 或设备码，例：https://api.day.app/DxHcxxxxxRxxxxxxcm/
     'BARK_ARCHIVE': '',                 # bark 推送是否存档
     'BARK_GROUP': '',                   # bark 推送分组
@@ -86,7 +87,24 @@ for k in push_config:
         v = os.getenv(k)
         push_config[k] = v
 
+def fcm(title: str, content: str, url: str) -> None:
+    """
+    Push Notification API 基于xdroid.net的接口 google play可下载
+    """
+    if not push_config.get("FCM_KEY"):
+        print("FCM 服务的 FCM_KEY 未设置!!\n取消推送")
+        return
+    print("FCM 服务启动")
+    
+    url = 'http://xdroid.net/api/message'
+    data = {"k": {push_config.get("FCM_KEY")},"title": title,"content": content,"u": url}
+    response = requests.post(url, data=json.dumps(data)).json()
 
+    if response.get("StatusCode") == 0:
+        print("FCM 推送成功！")
+    else:
+        print("FCM 推送失败！错误信息如下：\n", response)
+    
 def bark(title: str, content: str) -> None:
     """
     使用 bark 推送消息。
@@ -517,7 +535,7 @@ if push_config.get("TG_BOT_TOKEN") and push_config.get("TG_USER_ID"):
     notify_function.append(telegram_bot)
 
 
-def send(title: str, content: str) -> None:
+def send(title: str, content: str, url: str) -> None:
     if not content:
         print(f"{title} 推送内容为空！")
         return
