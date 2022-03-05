@@ -30,7 +30,7 @@ def GetNewRSS(url):
             print(f.feed.title,post.title)
             #<a 超链接套住标题 /a> 文章发布时间 删除html转义了的文章内容
             #notify.send('<a href="'+post.link+'">'+f.feed.title+' - '+post.title+'</a>\n'+post.published,delhtml(post.description))
-            标题无链接notify.send(f.feed.title+post.title,delhtml(post.description),post.link)
+            notify.send(f.feed.title+post.title,delhtml(post.description),post.link)
             #写入oldrss记录
             oldrss.writelines([f.feed.title,'  ',post.link,'  ',post.title,'\n'])
         oldrss.close()
