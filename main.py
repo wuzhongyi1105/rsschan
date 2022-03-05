@@ -3,28 +3,6 @@ import re
 import notify
 import requests
 import json
-
-def FCMpush(t,c,u):
-    for k in push_config:
-    if os.getenv(k):
-        v = os.getenv(k)
-        push_config[k] = v
-    """
-    Push Notification API 基于xdroid.net的接口 google play可下载
-    """
-    if not push_config.get("FCM_KEY"):
-        print("FCM 服务的 FCM_KEY 未设置!!\n取消推送")
-        return
-    print("FCM 服务启动")
-    
-    url = 'http://xdroid.net/api/message'
-    data = {"k": {push_config.get("FCM_KEY")},"title": t,"content": c,"u": u}
-    response = requests.post(url, data=json.dumps(data)).json()
-
-    if response.get("StatusCode") == 0:
-        print("FCM 推送成功！")
-    else:
-        print("FCM 推送失败！错误信息如下：\n", response)
         
 #删除多余html标签和超过2048字节数的字
 def delhtml(t):
