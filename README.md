@@ -2,6 +2,9 @@
 
 > RSS update&notification(Bark、DingTalk、FeiShu、go-cqhttp、gotify、iGot、server chan、push+、qmsg chan、WeChat work、telegram). - RSS更新与通知(Bark、钉钉群机器人、飞书群机器人、go-cqhttp、gotify、iGot、server chan、push+、qmsg chan、WeChat work、telegram)。
 
+
+2022/3/5更新支持fcm推送 https://play.google.com/store/apps/details?id=net.xdroid.pn
+
 # 功能
 🌟RSS酱 运行在github action上的rss自动更新通知项目
 - 支持多rss订阅源
