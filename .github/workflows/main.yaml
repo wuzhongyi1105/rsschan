@@ -24,6 +24,7 @@ jobs:
 
     - name: Update rss
       env:
+        FCM_KEY: ${{ secrets.FCM_KEY }}
         BARK_PUSH: ${{ secrets.BARK_PUSH }}
         BARK_ARCHIVE: ${{ secrets.BARK_ARCHIVE }}
         BARK_GROUP: ${{ secrets.BARK_GROUP }}
