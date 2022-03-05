@@ -8,7 +8,7 @@ def delhtml(t):
     nohtml = pattern.sub('', t)
 
     #最大微信推送可传输字节数2048 太多信息导致信息流太长 一个汉字占2字节
-    if len(nohtml) > 256:
+    if len(nohtml) > 512:
         return '\n文章过长请查看原文'
     else:
         return '\n'+nohtml
@@ -26,18 +26,22 @@ def GetNewRSS(url):
         if not post.link in old:
             #打印文章标题
             print(f.feed.title,post.title)
-            notify.send('<a href="'+post.link+'">'+f.feed.title+' - '+post.title+'</a>\n'+post.published,delhtml(post.description))
+            #<a 超链接套住标题 /a> 文章发布时间 删除html转义了的文章内容
+            #标题有链接notify.send('<a href="'+post.link+'">'+f.feed.title+' - '+post.title+'</a>\n'+post.published,delhtml(post.description))
+            #标题无链接notify.send(f.feed.title+post.title,delhtml(post.description),post.link)
+            notify.send(f.feed.title+post.title,delhtml(post.description),post.link)
+            #写入oldrss记录
             oldrss.writelines([f.feed.title,'  ',post.link,'  ',post.title,'\n'])
-
         oldrss.close()
 
 if __name__ == '__main__':
     #订阅地址在rss_sub文件，每行填一个网址。
 
     #读取rss_sub文件，获取订阅地址。并逐行订阅
-    #添加记录
+    #无rss时更新记录 添加记录 保证action能通过
     oldrss=open('oldrss',mode='a+')
-    oldrss.writelines(['\n'])
+    oldrss.writelines(['1\n'])
     oldrss.close()
+    
     for line in open("rss_sub"):
         GetNewRSS(line)
