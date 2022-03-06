@@ -1,16 +1,17 @@
 import feedparser
 import re
 import notify
-import requests
-import json
-        
+
 #删除多余html标签和超过2048字节数的字
 def delhtml(t):
     pattern = re.compile(r'<[^>]+>',re.S)
     nohtml = pattern.sub('', t)
 
-    #最大微信推送可传输字节数2048 太多信息导致信息流太长 一个汉字占2字节
-    if len(nohtml) > 512:
+    return nohtml
+    #无视字数发送
+
+    #一个汉字占2字节
+    if len(nohtml) > 1024:
         return '\n文章过长请查看原文'
     else:
         return '\n'+nohtml
@@ -18,31 +19,42 @@ def delhtml(t):
 #获取最新内容
 def GetNewRSS(url):
     f=feedparser.parse(url)
-    for post in f.entries:
-        oldrss=open('oldrss',mode='a+')
+    
+    #读取之前的rss 作为对比文件
+    with open("oldrss",errors='ignore') as file:
+        old = file.read()
 
-        #读取之前的rss
-        with open("oldrss") as file:
-            old = file.read()
-        #检查文章链接是否存在如果不存在则发送
+    #按每篇文章进行操作
+    for post in f.entries:
+
+        #检查文章链接是否存在如果不存在则
         if not post.link in old:
+            """
+            f.feed.title     媒体名称
+            post.title       文章标题
+            post.description 文章内容
+            post.link        文章链接
+            post.published   文章时间
+            <a href="url">   超链接
+            """
+
             #打印文章标题
             print(f.feed.title,post.title)
+
             #<a 超链接套住标题 /a> 文章发布时间 删除html转义了的文章内容
-            #notify.send('<a href="'+post.link+'">'+f.feed.title+' - '+post.title+'</a>\n'+post.published,delhtml(post.description))
-            notify.send(f.feed.title+post.title,delhtml(post.description),post.link)
+            #notify.send('<a href="'+post.link+'">'+f.feed.title+' - '+post.title+'</a>\n'+post.published, delhtml(post.description))
+            #notify.send(f.feed.title+post.title, delhtml(post.description), post.link)
+
+            #使用fcm方式发送 这个消息带链接只可用这种方式 不带链接用send即可
+            notify.fcm(post.title, f.feed.title+delhtml(post.description), post.link)
+
+
             #写入oldrss记录
+            oldrss=open('oldrss',mode='a+',errors='ignore')
             oldrss.writelines([f.feed.title,'  ',post.link,'  ',post.title,'\n'])
-        oldrss.close()
+            oldrss.close
 
 if __name__ == '__main__':
-    #订阅地址在rss_sub文件，每行填一个网址。
-
-    #读取rss_sub文件，获取订阅地址。并逐行订阅
-    #无rss时更新记录 添加记录 保证action能通过
-    oldrss=open('oldrss',mode='a+')
-    oldrss.writelines(['1\n'])
-    oldrss.close()
-    
-    for line in open("rss_sub"):
+    #订阅地址在rss_sub文件，每行填一个网址。    
+    for line in open("rss_sub",errors='ignore'):
         GetNewRSS(line)
