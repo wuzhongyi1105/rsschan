@@ -91,14 +91,9 @@ def fcm(title: str, content: str, link: str) -> None:
     """
     Push Notification API 基于xdroid.net的接口 google play可下载
     """
-    if not push_config.get("FCM_KEY"):
-        print("FCM 服务的 FCM_KEY 未设置!!\n取消推送")
-        return
-    print("FCM 服务启动")
-    
+    data = {"k":push_config.get("FCM_KEY"),"t": title, "c": content,"u": link}
     url = 'http://xdroid.net/api/message'
-    data = {"k": {push_config.get("FCM_KEY")},"title": title,"content": content,"u": link}
-    response = requests.post(url, data=json.dumps(data)).json()
+    response = requests.post(url, data=data).json()
 
     if response.get("StatusCode") == 0:
         print("FCM 推送成功！")
@@ -536,7 +531,7 @@ if push_config.get("TG_BOT_TOKEN") and push_config.get("TG_USER_ID"):
     notify_function.append(telegram_bot)
 
 
-def send(title: str, content: str, link: str) -> None:
+def send(title: str, content: str) -> None:
     if not content:
         print(f"{title} 推送内容为空！")
         return
@@ -547,7 +542,7 @@ def send(title: str, content: str, link: str) -> None:
     content += "\n" + text
 
     ts = [
-        threading.Thread(target=mode, args=(title, content, link), name=mode.__name__)
+        threading.Thread(target=mode, args=(title, content), name=mode.__name__)
         for mode in notify_function
     ]
     [t.start() for t in ts]
