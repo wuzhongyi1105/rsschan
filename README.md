@@ -1,6 +1,6 @@
 # 🔥RSS Chan
 资源推荐 https://github.com/feeddd/feeds
-2022/3/5更新支持fcm推送 https://play.google.com/store/apps/details?id=net.xdroid.pn
+2022/3/5更新支持fcm推送 有次数限制 https://play.google.com/store/apps/details?id=net.xdroid.pn
 
 # 功能
 🌟RSS酱 运行在github action上的rss自动更新通知项目
