@@ -54,6 +54,11 @@ def GetNewRSS(url):
             oldrss.close
 
 if __name__ == '__main__':
+    #防止ACTION同步失败
+    oldrss=open('oldrss',mode='a+',errors='ignore')
+    oldrss.writelines('Update Start')
+    oldrss.close
+            
     #订阅地址在rss_sub文件，每行填一个网址。    
     for line in open("rss_sub",errors='ignore'):
         GetNewRSS(line)
