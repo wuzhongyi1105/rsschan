@@ -19,14 +19,12 @@ def delhtml(t):
 #获取最新内容
 def GetNewRSS(url):
     f=feedparser.parse(url)
-    
-    #读取之前的rss 作为对比文件
-    with open("oldrss",errors='ignore') as file:
-        old = file.read()
-
     #按每篇文章进行操作
     for post in f.entries:
-
+        #读取之前的rss 作为对比文件
+        with open("oldrss",errors='ignore') as file:
+            old = file.read()
+            
         #检查文章链接是否存在如果不存在则
         if not post.link in old:
             """
