@@ -94,8 +94,7 @@ def fcm(title: str, content: str, link: str) -> None:
     data = {"k":push_config.get("FCM_KEY"),"t": title, "c": content,"u": link}
     url = 'http://xdroid.net/api/message'
     response = requests.post(url, data=data).json()
-
-    if response.get("success") == 1:
+    if response["success"] == 1:
         print("FCM 推送成功！")
     else:
         print("FCM 推送失败！错误信息如下：\n", response)
