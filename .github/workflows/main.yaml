@@ -24,6 +24,7 @@ jobs:
 
     - name: Update rss
       env:
+        MIPUSH_TOPIC: ${{ secrets.MIPUSH_TOPIC }}
         FCM_KEY: ${{ secrets.FCM_KEY }}
         BARK_PUSH: ${{ secrets.BARK_PUSH }}
         BARK_ARCHIVE: ${{ secrets.BARK_ARCHIVE }}
