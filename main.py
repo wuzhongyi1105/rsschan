@@ -8,11 +8,11 @@ def delhtml(t):
     nohtml = pattern.sub('', t)
     
     #无视字数发送
-    return nohtml
+    #return nohtml
     
 
     #一个汉字占2字节
-    if len(nohtml) > 1024:
+    if len(nohtml) > 256:
         return '\n文章过长请查看原文'
     else:
         return '\n'+nohtml
@@ -41,13 +41,13 @@ def GetNewRSS(url):
             print(f.feed.title,post.title)
 
             #<a 超链接套住标题 /a> 文章发布时间 删除html转义了的文章内容
-            #notify.send('<a href="'+post.link+'">'+f.feed.title+' - '+post.title+'</a>\n'+post.published, delhtml(post.description))
+            notify.send('<a href="'+post.link+'">'+f.feed.title+' - '+post.title+'</a>\n', delhtml(post.description))
             #notify.send(f.feed.title+post.title, delhtml(post.description), post.link)
 
             #使用fcm方式发送 这个消息带链接只可用这种方式 不带链接用send即可
             #notify.fcm(f.feed.title+'  |  '+post.published, post.title+delhtml(post.description), post.link)
             
-            notify.mipush(f.feed.title+post.published, post.title+delhtml(post.description))
+            #notify.mipush(f.feed.title+post.published, post.title+delhtml(post.description))
 
             #写入oldrss记录
             oldrss=open('oldrss',mode='a+',errors='ignore')
