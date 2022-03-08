@@ -94,7 +94,7 @@ def mipush(title: str, content: str) -> None:
     """
     data = {"topic":push_config.get("MIPUSH_TOPIC"),"title": title, "content": content}
     url = 'http://tdtt.top/'
-    response = requests.post(url, data=data).json()
+    response = requests.post(url, data=data)
     print(response)
     
 def fcm(title: str, content: str, link: str) -> None:
