@@ -31,6 +31,7 @@ def print(text, *args, **kw):
 push_config = {
     'HITOKOTO': False,                  # 启用一言（随机句子）
     
+    'MIPUSH_TOPIC':'',                  # MIPUSH 安卓应用 “消息接收”
     'FCM_KEY':'',                       # Push Notification API 基于xdroid.net的接口 google play可下载
     'BARK_PUSH': '',                    # 必填 bark IP 或设备码，例：https://api.day.app/DxHcxxxxxRxxxxxxcm/
     'BARK_ARCHIVE': '',                 # bark 推送是否存档
@@ -86,7 +87,16 @@ for k in push_config:
     if os.getenv(k):
         v = os.getenv(k)
         push_config[k] = v
-
+        
+def mipush(title: str, content: str) -> None:
+    """
+    MIPUSH 安卓应用 ‘消息接收’ 
+    """
+    data = {"topic":push_config.get("MIPUSH_TOPIC"),"title": title, "content": content}
+    url = 'http://tdtt.top/'
+    response = requests.post(url, data=data).json()
+    print(response)
+    
 def fcm(title: str, content: str, link: str) -> None:
     """
     Push Notification API 基于xdroid.net的接口 google play可下载
