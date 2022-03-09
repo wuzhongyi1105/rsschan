@@ -1,13 +1,11 @@
 # 🔥RSS Chan
 资源推荐 https://github.com/feeddd/feeds
 
-2022/3/5更新支持fcm推送 有次数限制 https://play.google.com/store/apps/details?id=net.xdroid.pn
-
 #推送方式推荐
 
 iOS - Bark  https://github.com/Finb/bark-server 支持自定义推送图标和链接自建服务器 免费
 
-Android - PUSH Deer&Server酱  iOS端可自建服务器免费，安卓端支持mipush
+Android - PUSH Deer&Server酱  iOS端可自建服务器免费，安卓端支持mipush  FCM Toolbox https://github.com/SimonMarquis/FCM-toolbox 免费接口无限制
 
 # 功能
 🌟RSS酱 运行在github action上的rss自动更新通知项目
