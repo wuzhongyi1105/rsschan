@@ -45,7 +45,7 @@ def GetNewRSS(url):
             #notify.send(f.feed.title+post.title, delhtml(post.description), post.link)
             #notify.send(f.feed.title+'  '+post.title, delhtml(post.description)+post.link)
             #使用fcm方式发送 这个消息带链接只可用这种方式 不带链接用send即可
-            notify.fcm(post.title,delhtml(post.description), post.link)
+            notify.fcm(post.title,f.feed.title+'\n'+delhtml(post.description), post.link)
             
             #notify.mipush(f.feed.title+post.published, post.title+delhtml(post.description))
 
