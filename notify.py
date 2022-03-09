@@ -117,6 +117,7 @@ def fcm(title: str, content: str, link: str) -> None:
                 "clipboard":"false"
                 }
             }
+           }
 
     #data = '{"to":"'+push_config.get("FCM_KEY")+'","time_to_live":60,"priority":"high","data":{"text":{"title":"'+title+'","message":"'+content+'","clipboard":"false"}}}'
     #data = {"to": f"{fcmkey}","time_to_live":"60","priority":"high","data":{"text":{"title":f"{title}","message":f"{link+content}","clipboard":"false"}}}
