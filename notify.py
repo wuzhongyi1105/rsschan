@@ -105,10 +105,16 @@ def fcm(title: str, content: str, link: str) -> None:
     """
     url = "https://fcm.googleapis.com/fcm/send"
     
+
+    #URL
+    #link1 = {"title":title+content,"url":link}
+    #link2 = {"link":link1}
+    #data = {"to":push_config.get("FCM_KEY"),"time_to_live":60,"priority":"high","data":link2}
+    
+    #{"text":{"title":"asdsadasda","message":"","clipboard":false}}}
+    #TEXT
     booler = "false"
-    #text
     link1 = {"title":title,"message":content,"clipboard":booler}
-    #link = {"title":title,"url":link+content}
     link2 = {"text":link1}
     data = {"to":push_config.get("FCM_KEY"),"time_to_live":60,"priority":"high","data":link2}
     headers = {'authorization': 'key=AAAASwElybY:APA91bFaTT_zKLcLYqB0soW8PJmFFG7x1F3wiR0MGta9lLsU22uAVa0VD_3zzz-OremJKDEWEf52OD554byamcwAmZldgrQKfwAjjbhZz_5DYT-z1gcflUBFSWVQQ9lSE9KwDBNHULvfVKmQwxa7xNwuPHz-VfdTbw','Content-Type':'application/json'}
