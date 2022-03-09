@@ -104,14 +104,14 @@ def fcm(title: str, content: str, link: str) -> None:
     https://github.com/SimonMarquis/FCM-toolbox
     """
     url = "https://fcm.googleapis.com/fcm/send"
-    strtitle = title.encode("utf-8").decode("latin1")
-    strcontent = content.encode("utf-8").decode("latin1")
-    strlink = link.encode("utf-8").decode("latin1")
-    payload="{\"to\":\""+push_config.get("FCM_KEY")+"\",\"time_to_live\":\"60\",\"priority\":\"high\",\"data\":{\"link\":{\"title\":\""+strtitle+strcontent+"\",\"url\":\""+strlink+"\"}}"
+    link1 = {"title":title,"url":link}
+    link2 = {"link":link1}
+    data = {"to":push_config.get("FCM_KEY"),"time_to_live":60,"priority":"high","data":link2}
+    #payload="{\"to\":\""+push_config.get("FCM_KEY")+"\",\"time_to_live\":\"60\",\"priority\":\"high\",\"data\":{\"link\":{\"title\":\""+strtitle+strcontent+"\",\"url\":\""+strlink+"\"}}"
     headers = {'authorization': 'key=AAAASwElybY:APA91bFaTT_zKLcLYqB0soW8PJmFFG7x1F3wiR0MGta9lLsU22uAVa0VD_3zzz-OremJKDEWEf52OD554byamcwAmZldgrQKfwAjjbhZz_5DYT-z1gcflUBFSWVQQ9lSE9KwDBNHULvfVKmQwxa7xNwuPHz-VfdTbw'}
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=headers, data = json.dumps(data))
 
-    print(response.text)
+    print(response)
     
 def bark(title: str, content: str) -> None:
     """
