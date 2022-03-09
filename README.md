@@ -1,6 +1,7 @@
 # 🔥RSS Chan
 资源推荐 https://github.com/feeddd/feeds
 
+https://rsshub.app/
 #推送方式推荐
 
 iOS - Bark  https://github.com/Finb/bark-server 支持自定义推送图标和链接自建服务器 免费
