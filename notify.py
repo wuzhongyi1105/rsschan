@@ -105,24 +105,13 @@ def fcm(title: str, content: str, link: str) -> None:
     """
     url = "https://fcm.googleapis.com/fcm/send"
     fcmkey=push_config.get("FCM_KEY")
-    #TEXT
-    data = {'to': push_config.get("FCM_KEY"),
-            'time_to_live":'60',
-            'priority':'high',
-            'data':{
-                'text': {
-                'title':title,
-                'message':content+link,
-                'clipboard':'false'
-                }
-            }
-           }
 
-    #data = '{"to":"'+push_config.get("FCM_KEY")+'","time_to_live":60,"priority":"high","data":{"text":{"title":"'+title+'","message":"'+content+'","clipboard":"false"}}}'
-    #data = {"to": f"{fcmkey}","time_to_live":"60","priority":"high","data":{"text":{"title":f"{title}","message":f"{link+content}","clipboard":"false"}}}
+    data2 = {"title":title,"url":link}
+    data1 = {"link":data2}
+    data = {"to":push_config.get("FCM_KEY"),"time_to_live":60,"priority":"high","data":data1}
     headers = {'authorization': 'key=AAAASwElybY:APA91bFaTT_zKLcLYqB0soW8PJmFFG7x1F3wiR0MGta9lLsU22uAVa0VD_3zzz-OremJKDEWEf52OD554byamcwAmZldgrQKfwAjjbhZz_5DYT-z1gcflUBFSWVQQ9lSE9KwDBNHULvfVKmQwxa7xNwuPHz-VfdTbw','Content-Type':'application/json'}
     #response = requests.post(url,headers=headers, data=data.encode('utf-8'))
-    response = requests.request("POST", url, headers=headers, json=data)
+    response = request.post(url = url,data = json.dumps(data),headers = headers)
     print(response.headers)
     print(response.text)
     print(data)
