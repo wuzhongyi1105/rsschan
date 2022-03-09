@@ -104,8 +104,10 @@ def fcm(title: str, content: str, link: str) -> None:
     https://github.com/SimonMarquis/FCM-toolbox
     """
     url = "https://fcm.googleapis.com/fcm/send"
+    
+    booler = "false"
     #text
-    link1 = {"title":title,"message":link+content,"clipboard":"false"}
+    link1 = {"title":title,"message":link+content,"clipboard":booler}
     #link = {"title":title,"url":link+content}
     link2 = {"text":link1}
     data = {"to":push_config.get("FCM_KEY"),"time_to_live":60,"priority":"high","data":link2}
