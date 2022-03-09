@@ -33,7 +33,7 @@ push_config = {
     
     'MIPUSH_TOPIC':'',                  # MIPUSH 安卓应用 “消息接收”
     
-    'FCM_KEY':'',                       # https://github.com/SimonMarquis/FCM-toolbox
+    'FCM_KEY':'',                       # https://github.com/SimonMarquis/FCM-toolbox 下载apk 右上三点 Topics 设置标签， share token 复制创建新变量 FCM_KEY即可，第一次需要梯子用来注册，后续不用挂这，后台建议关闭电池优化
     
     'BARK_PUSH': '',                    # 必填 bark IP 或设备码，例：https://api.day.app/DxHcxxxxxRxxxxxxcm/
     'BARK_ARCHIVE': '',                 # bark 推送是否存档
@@ -103,18 +103,22 @@ def fcm(title: str, content: str, link: str) -> None:
     """
     https://github.com/SimonMarquis/FCM-toolbox
     """
-    url = "https://fcm.googleapis.com/fcm/send"
-    fcmkey=push_config.get("FCM_KEY")
-
+    #url
     data2 = {"title":title,"url":link}
     data1 = {"link":data2}
+    
+    #TEXT
+    #data2 = {"title":title,"message":link}
+    #data1 = {"text":data2}
+    
     data = {"to":push_config.get("FCM_KEY"),"time_to_live":60,"priority":"high","data":data1}
     headers = {'authorization': 'key=AAAASwElybY:APA91bFaTT_zKLcLYqB0soW8PJmFFG7x1F3wiR0MGta9lLsU22uAVa0VD_3zzz-OremJKDEWEf52OD554byamcwAmZldgrQKfwAjjbhZz_5DYT-z1gcflUBFSWVQQ9lSE9KwDBNHULvfVKmQwxa7xNwuPHz-VfdTbw','Content-Type':'application/json'}
-    #response = requests.post(url,headers=headers, data=data.encode('utf-8'))
+    url = "https://fcm.googleapis.com/fcm/send"
+    
     response = requests.post(url = url,data = json.dumps(data),headers = headers)
-    print(response.headers)
-    print(response.text)
-    print(data)
+    #print(response.headers)
+    print(response)
+    #print(data)
     
 def bark(title: str, content: str) -> None:
     """
