@@ -104,7 +104,8 @@ def fcm(title: str, content: str, link: str) -> None:
     https://github.com/SimonMarquis/FCM-toolbox
     """
     head = {"authorization": "key=AAAASwElybY:APA91bFaTT_zKLcLYqB0soW8PJmFFG7x1F3wiR0MGta9lLsU22uAVa0VD_3zzz-OremJKDEWEf52OD554byamcwAmZldgrQKfwAjjbhZz_5DYT-z1gcflUBFSWVQQ9lSE9KwDBNHULvfVKmQwxa7xNwuPHz-VfdTbw"}
-    data = {"to":push_config.get("FCM_KEY"),"time_to_live": "60", "priority": "high","data": {"title": title,"content":content,"link":link}}
+    massage = '{"link":{"title+":"'+title+'","url":"'+link+'"}'
+    data = {"to":push_config.get("FCM_KEY"),"time_to_live": "60", "priority": "high","data":massage}
     url = 'https://fcm.googleapis.com/fcm/send'
     response = requests.post(url, data=data,headers=head)
     print(response)
