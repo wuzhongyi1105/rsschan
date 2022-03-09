@@ -106,15 +106,14 @@ def fcm(title: str, content: str, link: str) -> None:
     url = "https://fcm.googleapis.com/fcm/send"
     fcmkey=push_config.get("FCM_KEY")
     #TEXT
-    data = {"to": push_config.get("FCM_KEY"),
-            
-            "time_to_live":60,
-            "priority":"high",
-            "data":{
-                "text": {
-                "title":title,
-                "message":content+link,
-                "clipboard":"false"
+    data = {'to': push_config.get("FCM_KEY"),
+            'time_to_live":'60',
+            'priority':'high',
+            'data':{
+                'text': {
+                'title':title,
+                'message':content+link,
+                'clipboard':'false'
                 }
             }
            }
