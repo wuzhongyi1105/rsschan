@@ -112,7 +112,6 @@ def fcm(title: str, content: str, link: str) -> None:
     response = requests.request("POST", url, headers=headers, data = json.dumps(data))
 
     print(response.headers)
-    print(response.boby)
     print(response.text)
     
 def bark(title: str, content: str) -> None:
